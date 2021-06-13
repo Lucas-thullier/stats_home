@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\RawLyricsController;
+use App\Http\Controllers\ScraperController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -16,12 +17,22 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::middleware("auth:api")->get("/user", function (Request $request) {
-    return $request->user();
+  return $request->user();
 });
 
 Route::get("/raw-data/action/fill-database", [
-    RawLyricsController::class,
-    "fillDatabase",
+  RawLyricsController::class,
+  "fillDatabase",
 ]);
 
-Route::get("/raw-data/artists/all", [RawLyricsController::class, "getArtists"]);
+Route::get("/raw-data/artists/all", [RawLyricsController::class, "getAuthors"]);
+
+Route::get("/scraper/wikipedia/artists", [
+  ScraperController::class,
+  "scrapeArtists",
+]);
+
+Route::get("/scraper/genius/artist-songs", [
+  ScraperController::class,
+  "getRappeurByGenius",
+]);

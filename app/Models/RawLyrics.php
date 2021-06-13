@@ -7,14 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class RawLyrics extends Model
 {
-    use HasFactory;
+  use HasFactory;
 
-    protected $guarded = [];
+  protected $guarded = [];
 
-    public static function getArtists()
-    {
-        return self::select("artist")
-            ->distinct()
-            ->get();
-    }
+  public static function getAuthors()
+  {
+    return self::select("author")
+      ->distinct()
+      ->get();
+  }
 }

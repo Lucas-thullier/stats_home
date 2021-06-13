@@ -13,10 +13,10 @@ class GeniusExtractor extends AbstractExtractor
         foreach ($content["songs"] as $song) {
             if ($song["lyrics"] && $song["title"]) {
                 $extractedSongs = [];
-                $extractedSongs["artist"] = $this->extractArtist($song);
+                $extractedSongs["author"] = $this->extractAuthor($song);
                 $extractedSongs["title"] = $this->extractTitle($song);
                 $extractedSongs["lyrics"] = $this->extractLyrics($song);
-                $extractedSongs["song_image"] = $this->extractSongImage($song);
+                $extractedSongs["image_url"] = $this->extractSongImage($song);
                 $extractedSongs["album"] = $this->extractAlbum($song);
                 $extractedSongs["is_live"] = $this->extractisLive($song);
                 $extractedSongs[
@@ -40,12 +40,12 @@ class GeniusExtractor extends AbstractExtractor
         return $content;
     }
 
-    private function extractArtist()
+    private function extractAuthor()
     {
         $pathinfo = pathinfo($this->filepath);
-        $artist = $pathinfo["filename"];
+        $author = $pathinfo["filename"];
 
-        return $artist;
+        return $author;
     }
 
     private function extractTitle($song)
