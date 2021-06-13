@@ -1,7 +1,31 @@
+@import "./modal.css";
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-div {
-  background-color: red;
+#app {
+  min-height: 100vh;
+  @apply bg-gray-500;
+}
+
+.card-collection {
+  @apply grid grid-cols-5 gap-4;
+}
+
+.card {
+  @apply bg-gray-100 flex flex-col min-h-3 items-center rounded-sm justify-center max-h-96;
+}
+
+.card > button > img {
+  object-fit: cover;
+  min-height: 70%;
+  /* @apply bg-gray-100; */
+}
+
+.card > button > .card-header {
+  /* @apply bg-gray-100; */
+}
+
+.card > button > .card-body {
+  @apply bg-gray-100 overflow-hidden overflow-ellipsis;
 }

@@ -1,11 +1,18 @@
 module.exports = {
   purge: [
-    // "./ressources/**/*.blade.php",
-    // "./ressources/**/*.js",
-    // "./ressources/**/*.vue",
+    "./ressources/views/*.blade.php",
+    "./ressources/js/*.js",
+    "./ressources/vuejs/**/*.vue",
   ],
   darkMode: false, // or 'media' or 'class'
   theme: {
+    minHeight: {
+      0: "0",
+      1: "25vh",
+      1: "50vh",
+      3: "7vh",
+      full: "100vh",
+    },
     extend: {},
   },
   variants: {

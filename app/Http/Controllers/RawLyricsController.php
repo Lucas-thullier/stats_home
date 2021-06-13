@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-use App\Http\Libs\RawLyricsExtract\GeniusExtractor;
-use App\Models\RawLyrics;
+use Illuminate\Support\Facades\Request;
+use App\Models\Artist;
 
 class RawLyricsController extends Controller
 {
@@ -14,16 +13,19 @@ class RawLyricsController extends Controller
     $rawLyricsPath = Storage::allFiles("lyrics/sources/genius");
 
     foreach ($rawLyricsPath as $rawLyricsPath) {
-      $extractor = new GeniusExtractor($rawLyricsPath);
-      $songsByArtist = $extractor->extract();
+      $lyricsExtractor = new \App\Http\Libs\RawLyricsExtract\GeniusExtractor(
+        $rawLyricsPath
+      );
+      $artistExtractor = new \App\Http\Libs\ArtistExtract\GeniusExtractor(
+        $rawLyricsPath
+      );
+      $artistData = $artistExtractor->extract();
+      $artist = Artist::create($artistData);
+
+      $songsByArtist = $lyricsExtractor->extract();
       foreach ($songsByArtist as $song) {
-        RawLyrics::create($song);
+        $artist->rawLyrics()->create($song);
       }
     }
-  }
-
-  public function getAuthors()
-  {
-    return RawLyrics::getAuthors();
   }
 }

@@ -11,6 +11,7 @@ class InitRawLyrics extends Migration
     if (!Schema::hasTable("raw_lyrics")) {
       Schema::create("raw_lyrics", function (Blueprint $table) {
         $table->id();
+        $table->foreignId("artist_id")->constrained();
         $table->string("title", "500");
         $table->string("author");
         $table->text("lyrics");

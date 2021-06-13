@@ -1,7 +1,6 @@
 <template>
   <navbar />
   <router-view></router-view>
-  <div>cc</div>
 </template>
 
 <script>
