@@ -16,7 +16,7 @@ Route::get("/raw-data/action/fill-database", [
 ]);
 
 Route::get("/raw-data/artists/all", [ArtistController::class, "getAll"]);
-// Route::get("/raw-data/artists/{id}", [ArtistController::class, "getArtist"]);
+Route::get("/raw-data/artists/{id}", [ArtistController::class, "getArtist"]);
 
 Route::get("/scraper/wikipedia/artists", [
   ScraperController::class,

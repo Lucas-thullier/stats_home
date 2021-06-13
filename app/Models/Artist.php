@@ -18,6 +18,8 @@ class Artist extends Model
 
   public static function getById($id)
   {
-    return self::where("id", $id)->get();
+    return self::with("RawLyrics")
+      ->where("id", $id)
+      ->get();
   }
 }

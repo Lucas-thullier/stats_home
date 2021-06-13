@@ -13,19 +13,19 @@
 }
 
 .card {
-  @apply bg-gray-100 flex flex-col min-h-3 items-center rounded-sm justify-center max-h-96;
+  @apply bg-gray-100 flex flex-col justify-between min-h-3 items-center rounded-sm justify-center max-h-96;
 }
 
-.card > button > img {
+.card > img {
   object-fit: cover;
   min-height: 70%;
+  @apply w-full;
+}
+
+.card > .card-header {
   /* @apply bg-gray-100; */
 }
 
-.card > button > .card-header {
-  /* @apply bg-gray-100; */
-}
-
-.card > button > .card-body {
+.card > .card-body {
   @apply bg-gray-100 overflow-hidden overflow-ellipsis;
 }

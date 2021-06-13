@@ -12,9 +12,8 @@ class ArtistController extends Controller
     return Artist::paginate(10);
   }
 
-  public function getArtist(Request $request)
+  public function getArtist($id)
   {
-    $id = $request->id;
     return Artist::getById($id);
   }
 }

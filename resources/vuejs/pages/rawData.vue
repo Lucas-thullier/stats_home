@@ -3,24 +3,33 @@
   <section class="card-collection mt-3 container mx-auto">
     <template v-if="loadAuthor">
       <div class="card" v-for="author in authors" :key="author.author">
-        <button id="show-modal" @click="openModal" :value="author.id">
-          <img :src="author.image_url" />
-          <div class="card-header">
+        <img :src="author.image_url" />
+        <div class="card-header">
+          <button id="show-modal" @click="openModal" :value="author.id">
             {{ author.name }}
-          </div>
-          <div class="card-body">
-            {{ author.description }}
-          </div>
-        </button>
+          </button>
+        </div>
+        <div class="card-body">
+          {{ author.description }}
+        </div>
       </div>
     </template>
     <paginator :data="data" v-on:loadPage="getAuthors" />
   </section>
 
   <modal v-if="showModal" @close="showModal = false">
-    <template v-slot:header> </template>
+    <template v-slot:header>
+      <img :src="artist.image_url" />
+      <span>{{ artist.name }}</span>
+    </template>
     <template v-slot:body>
-      <h1>Here might be a page title</h1>
+      <span>{{ artist.description }}</span>
+      <h2>Morceaux</h2>
+      <ul>
+        <li v-for="lyrics in artist.raw_lyrics" :key="lyrics.id">
+          {{ lyrics.title }}
+        </li>
+      </ul>
     </template>
   </modal>
 </template>
@@ -37,6 +46,7 @@ export default {
       loadAuthor: false,
       showModal: false,
       click: false,
+      artist: {},
     }
   },
   created() {
@@ -59,17 +69,18 @@ export default {
         })
         .catch((error) => console.error(error))
     },
-    // openModal(event) {
-    //   this.showModal = true
+    openModal(event) {
+      this.showModal = true
 
-    // const artistId = event.target.value
-    // axios
-    //   .get(`/api/raw-data/artists/${artistId}`)
-    //   .then((response) => {
-    //     console.log(response)
-    //   })
-    //   .catch((error) => console.error(error))
-    // },
+      const artistId = event.target.value
+      axios
+        .get(`/api/raw-data/artists/${artistId}`)
+        .then((response) => {
+          this.artist = response.data[0]
+          console.log(response.data)
+        })
+        .catch((error) => console.error(error))
+    },
   },
   mounted() {
     console.log("Component mounted.")

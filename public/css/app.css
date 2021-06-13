@@ -24,6 +24,7 @@
   border-radius: 2px;
   transition: all 0.3s ease;
   font-family: Helvetica, Arial, sans-serif;
+  overflow: scroll;
 }
 
 .modal-header h3 {
@@ -31918,22 +31919,23 @@ video {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  justify-content: space-between;
   max-height: 24rem;
   min-height: 7vh;
 }
 
-.card > button > img {
+.card > img {
   -o-object-fit: cover;
      object-fit: cover;
   min-height: 70%;
+  width: 100%;
+}
+
+.card > .card-header {
   /* @apply bg-gray-100; */
 }
 
-.card > button > .card-header {
-  /* @apply bg-gray-100; */
-}
-
-.card > button > .card-body {
+.card > .card-body {
   --tw-bg-opacity: 1;
   background-color: rgba(243, 244, 246, var(--tw-bg-opacity));
   overflow: hidden;
