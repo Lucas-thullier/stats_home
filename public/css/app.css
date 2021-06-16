@@ -19,21 +19,11 @@
   width: 70vw;
   height: 85vh;
   margin: 0px auto;
-  padding: 20px 30px;
   background-color: #fff;
   border-radius: 2px;
   transition: all 0.3s ease;
   font-family: Helvetica, Arial, sans-serif;
-  overflow: scroll;
-}
-
-.modal-header h3 {
-  margin-top: 0;
-  color: #42b983;
-}
-
-.modal-body {
-  margin: 20px 0;
+  overflow: hidden;
 }
 
 .modal-default-button {
@@ -11547,6 +11537,10 @@ video {
 
 .h-screen{
   height: 100vh;
+}
+
+.h-inherit{
+  height: inherit;
 }
 
 .text-xs{
@@ -42877,6 +42871,10 @@ video {
     height: 100vh;
   }
 
+  .sm\:h-inherit{
+    height: inherit;
+  }
+
   .sm\:text-xs{
     font-size: 0.75rem;
     line-height: 1rem;
@@ -73990,6 +73988,10 @@ video {
 
   .md\:h-screen{
     height: 100vh;
+  }
+
+  .md\:h-inherit{
+    height: inherit;
   }
 
   .md\:text-xs{
@@ -105107,6 +105109,10 @@ video {
     height: 100vh;
   }
 
+  .lg\:h-inherit{
+    height: inherit;
+  }
+
   .lg\:text-xs{
     font-size: 0.75rem;
     line-height: 1rem;
@@ -136222,6 +136228,10 @@ video {
     height: 100vh;
   }
 
+  .xl\:h-inherit{
+    height: inherit;
+  }
+
   .xl\:text-xs{
     font-size: 0.75rem;
     line-height: 1rem;
@@ -167335,6 +167345,10 @@ video {
 
   .\32xl\:h-screen{
     height: 100vh;
+  }
+
+  .\32xl\:h-inherit{
+    height: inherit;
   }
 
   .\32xl\:text-xs{

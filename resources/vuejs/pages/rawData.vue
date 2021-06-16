@@ -18,18 +18,55 @@
   </section>
 
   <modal v-if="showModal" @close="showModal = false">
-    <template v-slot:header>
-      <img :src="artist.image_url" />
-      <span>{{ artist.name }}</span>
-    </template>
-    <template v-slot:body>
-      <span>{{ artist.description }}</span>
-      <h2>Morceaux</h2>
-      <ul>
-        <li v-for="lyrics in artist.raw_lyrics" :key="lyrics.id">
-          {{ lyrics.title }}
-        </li>
-      </ul>
+    <template v-slot:modal-content>
+      <div class="modal-container grid grid-cols-2">
+        <div class="modal-body grid grid-cols-2 auto-rows-max h-inherit">
+          <span class="text-center row-span-0 col-span-0 col-span-2">{{
+            artist.name
+          }}</span>
+          <img
+            class="h-64 m-w-20 object-contain row-span-1 col-span-0"
+            :src="artist.image_url"
+          />
+          <p
+            class="
+              text-justify
+              px-5
+              max-h-60
+              overflow-y-hidden overflow-ellipsis
+              row-span-1
+              col-span-1
+            "
+          >
+            {{ artist.description }}
+          </p>
+          <div
+            style="max-height: 30.5rem"
+            class="
+              modal-lyrics
+              max-h-64
+              overflow-y-auto
+              col-span-0 col-span-2
+              border-l-2
+              pl-3
+            "
+          >
+            <h2>Morceaux</h2>
+            <ul>
+              <li
+                v-for="lyrics in artist.raw_lyrics"
+                :key="lyrics.id"
+                v-on:click="renderLyrics(event, lyrics.lyrics)"
+              >
+                {{ lyrics.title }}
+              </li>
+            </ul>
+          </div>
+        </div>
+        <p id="lyrics" class="border-t-8 overflow-y-auto whitespace-pre-line">
+          <!-- renderLyrics() -->
+        </p>
+      </div>
     </template>
   </modal>
 </template>
@@ -77,9 +114,12 @@ export default {
         .get(`/api/raw-data/artists/${artistId}`)
         .then((response) => {
           this.artist = response.data[0]
-          console.log(response.data)
         })
         .catch((error) => console.error(error))
+    },
+    renderLyrics(event, lyrics) {
+      document.querySelector("#lyrics").innerHTML = lyrics
+      // console.log(lyrics)
     },
   },
   mounted() {

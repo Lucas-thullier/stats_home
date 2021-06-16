@@ -13,7 +13,11 @@ module.exports = {
       3: "7vh",
       full: "100vh",
     },
-    extend: {},
+    extend: {
+      height: {
+        inherit: "inherit",
+      },
+    },
   },
   variants: {
     extend: {},
